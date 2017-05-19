@@ -1,5 +1,14 @@
 
 [[_oauth2bootsimple]]
-= Sample OAuth2 Authorization Server with In memory users
+= Simple OAuth2 Server with InMemory user
+used versions: Spring-Boot 1.5.3 and Spring-security-oauth2 2.1.0
 
-The sample application create fully-fledged OAuth2 Authorization Server. It uses 
+The sample application create fully-fledged OAuth2 Authorization Server. Example uses inMemory authenticaiton.
+User: tester
+Password: test
+
+Examples uses Gradle build tool and you can also execute directly gradle task from the commandline
+$gradle runExample 
+
+
+
