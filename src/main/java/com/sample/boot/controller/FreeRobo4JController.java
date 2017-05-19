@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 @Controller

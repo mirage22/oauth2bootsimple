@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 @Configuration
@@ -40,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-       http.antMatcher("/**")
+
+        http.antMatcher("/**")
                .authorizeRequests()
                .antMatchers(HttpMethod.GET, UriConstant.FREE).permitAll()
                .antMatchers(UriConstant.SECURE).authenticated()

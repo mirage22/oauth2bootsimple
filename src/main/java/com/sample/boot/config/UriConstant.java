@@ -1,7 +1,6 @@
 package com.sample.boot.config;
 
 /**
- * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 class UriConstant {
