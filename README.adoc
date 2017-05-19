@@ -1,1 +1,5 @@
 
+[[_oauth2bootsimple]]
+= Sample OAuth2 Authorization Server with In memory users
+
+The sample application create fully-fledged OAuth2 Authorization Server. It uses 
