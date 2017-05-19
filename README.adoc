@@ -25,6 +25,21 @@ after having example started
 curl -i http://localhost:8080/free
 
 Hello Free Robo4J End-Point!
----
+----
 
+=Fetching access_token
+----
+curl exampleapp:magicsecret@localhost:8080/oauth/token -d username=tester -d password=test -d grant_type=password
 
+...
+{"access_token":"7d417506-7e54-4629-b19f-69a8dd56c3c9","token_type":"bearer","refresh_token":"b1ada09f-27c5-4cf4-ac4b-6df4a4096771","expires_in":43199,"scope":"read write"}
+----
+
+=Accessing secure part
+
+----
+curl -i -H "Authorization: Bearer 7d417506-7e54-4629-b19f-69a8dd56c3c9" http://localhost:8080/secure
+
+...
+Hello Secure Robo4J End-Point! 
+----
