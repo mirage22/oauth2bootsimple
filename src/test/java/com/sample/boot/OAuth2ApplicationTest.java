@@ -15,5 +15,5 @@ public class OAuth2ApplicationTest {
     @Test
     public void contextLoads() {
     }
-    
+
 }
