@@ -1,6 +1,6 @@
-
 [[_oauth2bootsimple]]
 = Simple OAuth2 Server with InMemory user
+[![Build Status](https://travis-ci.org/mirage22/oauth2bootsimple.svg?branch=master)](https://travis-ci.org/mirage22/oauth2bootsimple)
 used versions: spring-Boot 1.5.3 and spring-security-oauth2 2.1.0
 
 The sample application create fully-fledged OAuth2 Authorization Server. Example uses inMemory authenticaiton.
