@@ -4,19 +4,27 @@
 used versions: spring-Boot 1.5.3 and spring-security-oauth2 2.1.0
 
 The sample application create fully-fledged OAuth2 Authorization Server. Example uses inMemory authenticaiton.
-
+----
 User: tester
 Password: test
+----
 
 Gradle build tool has configured task to execture example directly from the command-line
 ----
 $gradle runExample 
+
+....
+security.oauth2.client.clientId = exampleapp
+security.oauth2.client.secret = ****
 ----
 
 == Check publicly available part
 after having example started
 
+----
 curl -i http://localhost:8080/free
+
 Hello Free Robo4J End-Point!
+---
 
 
