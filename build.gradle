@@ -1,18 +1,31 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE')
+        classpath('se.transmode.gradle:gradle-docker:1.2')
+    }
+}
+
 group 'com.sample.boot'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'docker'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
-task runExample(type: JavaExec){
-    classpath sourceSets.main.runtimeClasspath
-    main = "com.sample.boot.OAuth2Application"
+jar {
+    baseName = 'oauth2bootsimple'
+    version = '1.0-SNAPSHOT'
 }
 
 dependencies {
@@ -21,6 +34,25 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '1.5.3.RELEASE'
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.1.0.RELEASE'
+    compile group: 'se.transmode.gradle', name: 'gradle-docker', version: '1.2'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.3.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+task runExample(type: JavaExec){
+    classpath sourceSets.main.runtimeClasspath
+    main = "com.sample.boot.OAuth2Application"
+}
+
+task buildDocker(type: Docker, dependsOn:  build){
+    push true
+    applicationName = jar.baseName
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }
