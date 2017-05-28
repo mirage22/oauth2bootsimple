@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * @author Miro Wengner (@miragemiko)
  */
 @Repository
-public interface RoboUnitRepository  extends CrudRepository<RoboUnit, Integer> {
+public interface RoboUnitRepository  extends CrudRepository<RoboUnit, Long> {
 }

@@ -1,26 +1,30 @@
 package com.sample.boot.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 
-@Entity(name = "robo_unit")
+@Entity(name = "ROBO_UNIT")
 public class RoboUnit {
 
     @Id
-    private Integer id;
+    @SequenceGenerator(name="robo_unit_generator", sequenceName="robo_unit_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "robo_unit_generator")
+    private Long id;
     private String uid;
     private String config;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
