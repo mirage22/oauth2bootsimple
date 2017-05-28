@@ -8,7 +8,7 @@ import javax.persistence.Id;
  * @author Miro Wengner (@miragemiko)
  */
 
-@Entity
+@Entity(name = "robo_unit")
 public class RoboUnit {
 
     @Id
