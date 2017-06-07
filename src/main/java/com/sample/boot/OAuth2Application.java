@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @author Miro Wengner (@miragemiko)
  */
 @SpringBootApplication
-//@EnableJpaRepositories(basePackages = "com.sample.boot.repository")
+@EnableJpaRepositories(basePackages = "com.sample.boot.repository")
 public class OAuth2Application {
     public static void main(String[] args) {
         SpringApplication.run(OAuth2Application.class, args);
@@ -21,7 +21,5 @@ public class OAuth2Application {
     @Bean
     public CommandLineRunner runner(final RoboUnitRepository repository) {
         return (args) -> System.err.println(repository.findAll());
-
-
     }
 }
