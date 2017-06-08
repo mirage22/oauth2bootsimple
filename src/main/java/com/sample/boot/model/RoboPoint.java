@@ -11,7 +11,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 
@@ -34,7 +33,7 @@ public class RoboPoint implements RoboEntity<Long> {
 
     @Id
     @Column(name = "ID")
-    @SequenceGenerator(name="robo_point_generator", sequenceName="robo_point_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "robo_point_generator", sequenceName = "robo_point_sequence", allocationSize = 1)
     @GeneratedValue(generator = "robo_point_generator")
     public Long getId() {
         return id;

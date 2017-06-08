@@ -15,6 +15,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,26 +45,24 @@ public class OAuth2ApplicationTest {
         RoboUnit mainUnit = new RoboUnit();
         mainUnit.setUid("main");
         mainUnit.setConfig("cameraUnit,httpUnit,mainConfiguration");
-        RoboUnit mainUnitStored = unitRepository.save(mainUnit);
 
         RoboUnit cameraUnit = new RoboUnit();
         cameraUnit.setUid(CAMERA_UNIT);
         cameraUnit.setConfig("jpg,5ms");
-        cameraUnit.setParent(mainUnitStored);
-        RoboUnit cameraUnitStored = unitRepository.save(cameraUnit);
+        cameraUnit.setParent(mainUnit);
 
         RoboUnit httpUnit = new RoboUnit();
         httpUnit.setUid(HTTP_UNIT);
-        httpUnit.setParent(mainUnitStored);
+        httpUnit.setParent(mainUnit);
         httpUnit.setConfig("serverIp:port/end_point");
-        RoboPoint roboPointHttp = pointRepository
-                .save(new RoboPoint(httpUnit, "image", "img1,img2"));
-        httpUnit.addPoint(roboPointHttp);
-        RoboUnit httpUnitStored = unitRepository.save(httpUnit);
+        List<RoboPoint> roboPoints = Arrays.asList(
+                new RoboPoint(httpUnit, "image1", "img1,img2"),
+                new RoboPoint(httpUnit, "image2", "img1,img2"));
+        httpUnit.addPoints(roboPoints);
 
 
-        mainUnit.addPart(cameraUnitStored);
-        mainUnit.addPart(httpUnitStored);
+        mainUnit.addPart(cameraUnit);
+        mainUnit.addPart(httpUnit);
         unitRepository.save(mainUnit);
 
         List<RoboUnit> units = (List<RoboUnit>) unitRepository.findAll();
@@ -73,7 +72,7 @@ public class OAuth2ApplicationTest {
         Assert.assertNotNull(units);
         Assert.assertTrue(units.size() == 3);
         Assert.assertNotNull(tmpHttpUnitStored.getPoints());
-        Assert.assertTrue(tmpHttpUnitStored.getPoints().size() == 1);
+        Assert.assertTrue(tmpHttpUnitStored.getPoints().size() == 2);
 
     }
 

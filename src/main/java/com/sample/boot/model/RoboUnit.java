@@ -15,12 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Marcus Hirt (@hirt)
  * @author Miro Wengner (@miragemiko)
  */
 
 @Entity(name = "ROBO_UNIT")
-public class RoboUnit implements RoboEntity<Long>{
+public class RoboUnit implements RoboEntity<Long> {
 
     private Long id;
     private String uid;
@@ -36,7 +35,7 @@ public class RoboUnit implements RoboEntity<Long>{
 
     @Id
     @Column(name = "ID")
-    @SequenceGenerator(name="robo_unit_generator", sequenceName="robo_unit_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "robo_unit_generator", sequenceName = "robo_unit_sequence", allocationSize = 1)
     @GeneratedValue(generator = "robo_unit_generator")
     @Override
     public Long getId() {
@@ -65,7 +64,7 @@ public class RoboUnit implements RoboEntity<Long>{
         this.config = config;
     }
 
-    @ManyToOne(cascade = { CascadeType.ALL })
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "PARENT_ID")
     public RoboUnit getParent() {
         return parent;
@@ -75,7 +74,7 @@ public class RoboUnit implements RoboEntity<Long>{
         this.parent = parent;
     }
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     public List<RoboUnit> getParts() {
         return parts;
     }
@@ -92,7 +91,7 @@ public class RoboUnit implements RoboEntity<Long>{
         this.parts.addAll(units);
     }
 
-    @OneToMany(mappedBy = "unit", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "unit", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     public List<RoboPoint> getPoints() {
         return points;
     }
